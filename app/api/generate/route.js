@@ -76,38 +76,34 @@ Return in the following JSON format:
 export async function POST(req) {
     const openai = new OpenAI({
         baseURL: "https://openrouter.ai/api/v1",
-        apiKey: process.env.OPENROUTER_API_KEY,
+        apiKey: process.env.OPENAI_API_KEY, // Ensure this environment variable is correctly set
     });
 
-    try {
-        const data = await req.text();
+    const data = await req.text();
 
+    try {
         const completion = await openai.chat.completions.create({
-            model: "openai/gpt-3.5-turbo",
+            model: "gpt-3.5-turbo",
             messages: [
                 { role: 'system', content: systemPrompt },
                 { role: 'user', content: data },
             ],
-            response_format: { type: 'json_object' },
         });
 
-        // Ensure the response is valid and JSON.parse is safe
-        const responseContent = completion.choices[0]?.message?.content;
+        // Log the complete response for debugging
+        console.log('API Response:', completion);
 
-        if (!responseContent) {
-            throw new Error('Invalid response content');
+        // Ensure completion.choices[0] and completion.choices[0].message.content are valid
+        if (completion.choices && completion.choices.length > 0) {
+            const responseContent = completion.choices[0].message.content;
+            const flashcards = JSON.parse(responseContent);
+            return NextResponse.json(flashcards);
+        } else {
+            console.error('No choices in response');
+            return NextResponse.json({ flashcards: [] });
         }
-
-        const flashcards = JSON.parse(responseContent);
-
-        if (!flashcards.flashcards || !Array.isArray(flashcards.flashcards)) {
-            throw new Error('Invalid flashcards format');
-        }
-
-        return NextResponse.json(flashcards.flashcards);
-
     } catch (error) {
         console.error('Error generating flashcards:', error);
-        return NextResponse.json({ error: 'Failed to generate flashcards' }, { status: 500 });
+        return NextResponse.json({ flashcards: [] });
     }
 }

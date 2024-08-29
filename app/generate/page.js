@@ -307,9 +307,7 @@
 //         </Container>
 //     );
 // }
-
-'use client';
-
+'use client'
 import { useUser } from "@clerk/nextjs";
 import { Container, Box, Typography, TextField, Paper, Button, Grid, CardActionArea, CardContent, DialogTitle, DialogContent, DialogActions, Dialog, DialogContentText, Card } from "@mui/material";
 import { writeBatch, collection, doc, getDoc } from "firebase/firestore";
