@@ -12,20 +12,27 @@ export default function SignUpPage() {
             }}
         >
             <AppBar position="static" sx={{ backgroundColor: "#3f51b5" }}>
-                <Toolbar>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                        Flashcard SaaS
-                    </Typography>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    {/* Left Side */}
                     <Button color="inherit">
-                        <Link href="/login" underline="none" color="inherit">
-                            Login
+                        <Link href="/" underline="none" color="inherit" sx={{ fontSize: '1.5rem' }}>
+                            FlashcardSaaS
                         </Link>
                     </Button>
-                    <Button color="inherit">
-                        <Link href="/signup" underline="none" color="inherit">
-                            Sign Up
-                        </Link>
-                    </Button>
+
+                    {/* Right Side */}
+                    <Box sx={{ display: 'flex' }}>
+                        <Button color="inherit">
+                            <Link href="/sign-in" underline="none" color="inherit">
+                                Login
+                            </Link>
+                        </Button>
+                        <Button color="inherit">
+                            <Link href="/sign-up" underline="none" color="inherit">
+                                Sign Up
+                            </Link>
+                        </Button>
+                    </Box>
                 </Toolbar>
             </AppBar>
 
@@ -51,7 +58,7 @@ export default function SignUpPage() {
                                 justifyContent: 'center',
                             }}
                         >
-                            <Typography variant="h4" sx={{color: '#3f51b5', textAlign: 'center' }}>
+                            <Typography variant="h4" sx={{ color: '#3f51b5', textAlign: 'center' }}>
                                 Join Us!
                             </Typography>
                             <Box

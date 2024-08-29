@@ -172,8 +172,10 @@ export default function Flashcards() {
     }
 
     const handleCardClick = (id) => {
+        console.log('Navigating to flashcard with id:', id); // Log the id
         router.push(`/flashcard?id=${id}`);
     }
+    
 
     const handleOpenDialog = (flashcardName) => {
         setSelectedFlashcard(flashcardName);
@@ -203,6 +205,10 @@ export default function Flashcards() {
     return (
         <GradientContainer maxWidth="100vw">
             <Title>MY FLASHCARDS</Title>
+            <Button variant="contained" href="\generate"
+            sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}>
+                    Generate new flashcards
+            </Button>
             <Grid container spacing={3} sx={{ mt: 4 }}>
                 {flashcards.map((flashcard, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>

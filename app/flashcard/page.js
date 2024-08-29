@@ -247,11 +247,29 @@ export default function Flashcard() {
                     mt: 4,
                     mb: 2,
                     textAlign: 'center',
-                    color: '#fff',
+                    color: 'white',
                     fontWeight: 'bold'
                 }}
             >
-                {search || "Untitled"} {/* Display the flashcard set name as the title */}
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
+                    <Button
+                        variant="contained"
+                        href="/generate"
+                        sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}
+                    >
+                        Generate New Flashcards
+                    </Button>
+                    {search || "Untitled"} {/* Display the flashcard set name as the title */}
+                    <Button
+                        variant="contained"
+                        href="/flashcards"
+                        sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}
+                    >
+                        Back to saved flashcards
+                    </Button>
+                </Box>
+
+
             </Typography>
 
             <Grid container spacing={3} sx={{ mt: 4 }}>
@@ -283,7 +301,7 @@ export default function Flashcard() {
                 ))}
             </Grid>
 
-            
+
         </GradientContainer>
     );
 }
