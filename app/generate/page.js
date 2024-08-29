@@ -89,7 +89,6 @@ export default function Generate() {
         handleClose();
         router.push('/flashcards');
     }
-
     return (
         <Container sx={{
             minHeight: '100vh',
@@ -97,48 +96,117 @@ export default function Generate() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            background: 'linear-gradient(135deg, #00aaff, #ff66cc)', // Corrected blue to pink gradient
+            background: 'linear-gradient(135deg, #00aaff, #ff66cc)',
             padding: 4,
             maxWidth: "100%",
         }}>
+            <Button variant="contained" href="/" sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}>
+                Go To Main
+            </Button>
             <Box sx={{
                 mt: 4,
                 mb: 6,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                color: '#fff'
+                width: '100%',
+                maxWidth: '800px',
             }}>
                 <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2, color: '#fff' }}>
                     Generate Flashcards
                 </Typography>
-                <Paper sx={{ p: 4, width: '100%', background: 'rgba(255, 255, 255, 0.8)' }}>
+                <Paper sx={{
+                    p: 4,
+                    width: '100%',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                }}>
                     <TextField
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        label="Enter text"
+                        label="Enter text" // Label properly set here
                         fullWidth
                         multiline
-                        rows={8}  // Number of rows; this helps make the textbox taller
+                        rows={6}
                         variant="outlined"
                         sx={{
-                            mb: 2,
-                            background: '#fff',
-                            fontSize: '1.1rem',
-                            width: '100%',        // Ensures the TextField is full width within its container
-                            height: '200px',      // Sets a specific height to make the TextField larger
+                            backgroundColor: '#fff',
+                            borderRadius: '4px',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                            marginBottom: 2,
                             '& .MuiInputBase-root': {
-                                fontSize: '1.2rem',  // Adjusts the font size inside the TextField
-                                padding: '12px',     // Increases padding for a more spacious look
+                                fontSize: '1.2rem',
+                                padding: '20px',
+                                minHeight: '120px',
+                            },
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '8px',
+                                '& fieldset': {
+                                    borderColor: '#B39DDB',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: '#4A148C',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#4A148C',
+                                    borderWidth: '2px',
+                                },
+                            },
+                            '& .MuiInputLabel-outlined': {
+                                fontSize: '1rem', // Adjusted for better visibility
+                                color: '#4A148C',
+                                transform: 'translate(14px, 18px) scale(1)', // Corrected label positioning
+                                '&.MuiInputLabel-shrink': {
+                                    transform: 'translate(14px, -6px) scale(0.85)', // Moves label when the field is focused or has content
+                                },
+                                '&.Mui-focused': {
+                                    color: '#6A1B9A',
+                                },
                             },
                         }}
                     />
 
-                    <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth sx={{ fontWeight: 'bold', py: 1.5 }}>
-                        Submit
-                    </Button>
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        p: 2,
+                        borderTop: '1px solid #ddd',
+                        gap: 2
+                    }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleSubmit}
+                            sx={{
+                                fontWeight: 'bold',
+                                px: 4,
+                                py: 1,
+                                backgroundColor: '#4A148C',
+                                '&:hover': { backgroundColor: '#6A1B9A' }
+                            }}
+                        >
+                            Generate
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            href="/flashcards"
+                            sx={{
+                                fontWeight: 'bold',
+                                px: 4,
+                                py: 1,
+                                backgroundColor: '#4A148C',
+                                '&:hover': { backgroundColor: '#6A1B9A' }
+                            }}
+                        >
+                            See the SAVED flashcards
+                        </Button>
+                    </Box>
                 </Paper>
             </Box>
+
             {flashcards.length > 0 && (
                 <Box sx={{ mt: 4, width: '100%', maxWidth: '1200px' }}>
                     <Typography variant="h5" sx={{ color: '#fff', fontWeight: 'bold', mb: 3 }}>

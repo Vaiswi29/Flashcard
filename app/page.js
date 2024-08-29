@@ -88,14 +88,14 @@ export default function Home() {
   return (
     <Container maxWidth="100vw" disableGutters>
       <Head>
-        <title>Flashcard SaaS</title>
+        <title>STUDY BUDDY GPT</title>
         <meta name="description" content="Create flashcards from your text with ease using our AI-powered platform." />
       </Head>
 
       <AppBar position="static" sx={{ backgroundColor: '#1C1C1E' }}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Montserrat, sans-serif', color: '#fff' }}>
-            Flashcard SaaS
+            STUDY BUDDY GPT
           </Typography>
           <SignedOut>
             <Button color="inherit" href="/sign-in">Login</Button>
@@ -122,7 +122,7 @@ export default function Home() {
         }}
       >
         <Typography variant="h2" sx={{ fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif', fontSize: '4rem' }}>
-          Flashcard SaaS
+          STUDY BUDDY GPT
         </Typography>
         <Typography variant="h5" sx={{ maxWidth: '800px', mt: 2, fontSize: '1.2rem' }}>
           Create flashcards from your text with ease using our AI-powered platform.
@@ -213,7 +213,7 @@ export default function Home() {
           </Typography>
           <Grid container spacing={6} justifyContent="center">
             {[
-              { title: "Basic Plan", price: "$5 / month", description: "Access to basic features and functionalities to get started with flashcards.", planType: 'basic' },
+              { title: "Basic Plan", price: "$5 / month", description: "Access to basic features to get started with flashcards.", planType: 'basic' },
               { title: "Pro Plan", price: "$15 / month", description: "Advanced features including smart flashcards and more storage.", planType: 'pro' },
               { title: "Premium Plan", price: "$30 / month", description: "All features plus priority support and exclusive content.", planType: 'premium' },
             ].map((plan, index) => (
