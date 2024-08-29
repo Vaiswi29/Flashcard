@@ -1,12 +1,12 @@
-'use client'
+'use client';
 import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import { AppBar, Box, Button, Container, Grid, Toolbar, Typography, Alert } from "@mui/material";
 import Head from "next/head";
 import { keyframes } from '@emotion/react';
 import { useRouter } from 'next/navigation';
-import { FaUser, FaLightbulb, FaMobileAlt } from 'react-icons/fa'; // FontAwesome icons
-import { useState } from 'react'; // Import useState
+import { FaUser, FaLightbulb, FaMobileAlt } from 'react-icons/fa';
+import { useState } from 'react';
 
 // Gradient animation keyframes
 const gradientAnimation = keyframes`
@@ -23,18 +23,25 @@ const featureHoverAnimation = keyframes`
 `;
 
 export default function Home() {
-  const router = useRouter();  // Define useRouter here
-  const { isSignedIn } = useUser(); // Use the useAuth hook to get the authentication status
-  const [error, setError] = useState(''); // State to manage error message
+  const router = useRouter();
+  const { isSignedIn } = useUser();
+  const [error, setError] = useState('');
 
-
-  
-  
+  // handleSubmit function as defined before
   const handleSubmit = async (plan) => {
     if (!isSignedIn) {
       setError('You need to log in to choose a plan.');
       return;
     }
+
+    // Plan pricing mapping
+    const planPricing = {
+      basic: { productName: 'Basic Subscription', amount: 5 },
+      pro: { productName: 'Pro Subscription', amount: 15 },
+      premium: { productName: 'Premium Subscription', amount: 30 },
+    };
+
+    const { productName, amount } = planPricing[plan];
 
     try {
       const response = await fetch('/api/checkout_session', {
@@ -42,7 +49,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ plan }),
+        body: JSON.stringify({ productName, amount }),
       });
 
       const checkoutSession = await response.json();
@@ -141,11 +148,9 @@ export default function Home() {
             transition: 'all 0.3s ease',
           }}
           onClick={handleGetStarted}
-        // onClick={() => router.push('/generate')}  // Now this will work
         >
           Get Started
         </Button>
-        {/* Display error message if not signed in */}
         {error && (
           <Alert severity="error" sx={{ mt: 2 }}>
             {error}
@@ -158,7 +163,7 @@ export default function Home() {
           <Typography variant="h3" textAlign="center" sx={{ fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif', mb: 6, color: '#51BFDA' }}>
             Features
           </Typography>
-          <Grid container spacing={4} >
+          <Grid container spacing={4}>
             {[
               { title: "Easy Text Input", description: "Simply input your text and let our software do the rest.", icon: <FaUser size={30} color='#ABD4F1' /> },
               { title: "Smart Flashcards", description: "Our AI breaks down your text into concise flashcards perfect for studying.", icon: <FaLightbulb size={30} color='#ABD4F1' /> },
@@ -199,74 +204,65 @@ export default function Home() {
             ))}
           </Grid>
         </Container>
-        {/* Add space before the pricing section */}
-        <Box sx={{ py: 10, backgroundColor: '#1F1F1F' }}>
-          <Container maxWidth="lg">
-            <Typography variant="h3" textAlign="center" gutterBottom sx={{ fontWeight: 'bold', color: '#FF4081', fontFamily: 'Montserrat, sans-serif', mb: 6 }}>
-              Pricing
-            </Typography>
-            <Grid container spacing={6} justifyContent="center">
-              {[
-                { title: "Basic Plan", price: "$5 / month", description: "Access to basic features and functionalities to get started with flashcards.", planType: 'basic' },
-                { title: "Pro Plan", price: "$15 / month", description: "Unlock advanced features including personalized flashcards and analytics.", planType: 'pro' },
-                { title: "Premium Plan", price: "$30 / month", description: "Get the full suite of features, including premium support and exclusive tools.", planType: 'premium' },
-              ].map((plan, index) => (
-                <Grid item xs={12} md={4} key={index}>
-                  <Box
-                    sx={{
-                      p: 4,
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      backgroundColor: '#333',
-                      color: '#FFF',
-                      borderRadius: 2,
-                      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-                      '&:hover': {
-                        transform: 'scale(1.05)',
-                        boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)',
-                        backgroundColor: '#4A4A4A',
-                      },
-                      transition: 'all 0.3s ease',
-                    }}
-                  >
-                    <div>
-                      <Typography variant="h6" sx={{ fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif' }}>{plan.title}</Typography>
-                      <Typography variant="h4" sx={{ color: '#FF4081', my: 2, fontWeight: 'bold' }}>{plan.price}</Typography>
-                      <Typography variant="body1" gutterBottom>{plan.description}</Typography>
-                    </div>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      onClick={() => handleSubmit(plan.planType)}
-                      sx={{
-                        mt: 2,
-                        borderRadius: 2,
-                        color: '#FF4081',
-                        borderColor: '#FF4081',
-                        '&:hover': {
-                          backgroundColor: '#FF4081',
-                          color: '#fff',
-                        },
-                      }}
-                    >
-                      Choose Plan
-                    </Button>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-            {/* Display error message if not signed in below pricing */}
-            {error && (
-              <Alert severity="error" sx={{ mt: 4, textAlign: 'center' }}>
-                {error}
-              </Alert>
-            )}
+      </Box>
 
-          </Container>
-        </Box>
+      <Box sx={{ py: 10, backgroundColor: '#1F1F1F' }}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" textAlign="center" gutterBottom sx={{ fontWeight: 'bold', color: '#FF4081', fontFamily: 'Montserrat, sans-serif', mb: 6 }}>
+            Pricing
+          </Typography>
+          <Grid container spacing={6} justifyContent="center">
+            {[
+              { title: "Basic Plan", price: "$5 / month", description: "Access to basic features and functionalities to get started with flashcards.", planType: 'basic' },
+              { title: "Pro Plan", price: "$15 / month", description: "Advanced features including smart flashcards and more storage.", planType: 'pro' },
+              { title: "Premium Plan", price: "$30 / month", description: "All features plus priority support and exclusive content.", planType: 'premium' },
+            ].map((plan, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <Box
+                  sx={{
+                    p: 4,
+                    backgroundColor: '#333',
+                    borderRadius: 2,
+                    textAlign: 'center',
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-5px)',
+                      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.2)',
+                    },
+                  }}
+                >
+                  <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#51BFDA', fontFamily: 'Montserrat, sans-serif', mb: 2 }}>
+                    {plan.title}
+                  </Typography>
+                  <Typography variant="h4" sx={{ color: '#FF4081', mb: 4 }}>
+                    {plan.price}
+                  </Typography>
+                  <Typography variant="body1" sx={{ mb: 4 }}>
+                    {plan.description}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    sx={{
+                      backgroundColor: '#FF4081',
+                      fontWeight: 'bold',
+                      fontFamily: 'Montserrat, sans-serif',
+                      '&:hover': {
+                        backgroundColor: '#ff6584',
+                      },
+                    }}
+                    onClick={() => handleSubmit(plan.planType)}
+                  >
+                    Choose Plan
+                  </Button>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       </Box>
     </Container>
   );
 }
+
