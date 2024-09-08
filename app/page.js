@@ -125,7 +125,7 @@ export default function Home() {
           Relaxasaurus
         </Typography>
         <Typography variant="h5" sx={{ maxWidth: '800px', mt: 2, fontSize: '1.2rem' }}>
-          Feeling stressed? Let Relaxasaurus show you the dino-mite way to crush anxiety and stomp out stress!"
+          Feeling stressed? Let Relaxasaurus show you the dino-mite way to crush anxiety and stomp out stress!
         </Typography>
         <Button
           variant="contained"
