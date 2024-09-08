@@ -204,10 +204,10 @@ export default function Flashcards() {
 
     return (
         <GradientContainer maxWidth="100vw">
-            <Title>MY FLASHCARDS</Title>
+            <Title>MY Saurascards</Title>
             <Button variant="contained" href="\generate"
             sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}>
-                    Generate new flashcards
+                    Generate new Saurascards
             </Button>
             <Grid container spacing={3} sx={{ mt: 4 }}>
                 {flashcards.map((flashcard, index) => (
@@ -232,7 +232,7 @@ export default function Flashcards() {
             <Dialog open={openDialog} onClose={handleCloseDialog}>
                 <DialogTitle>Confirm Delete</DialogTitle>
                 <DialogContent>
-                    Are you sure you want to delete this flashcard?
+                    Are you sure you want to delete this Saurascard?
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseDialog} color="primary">

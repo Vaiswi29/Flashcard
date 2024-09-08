@@ -95,7 +95,7 @@ export default function Home() {
       <AppBar position="static" sx={{ backgroundColor: '#1C1C1E' }}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Montserrat, sans-serif', color: '#fff' }}>
-            STUDY BUDDY GPT
+            Relaxasaurus
           </Typography>
           <SignedOut>
             <Button color="inherit" href="/sign-in">Login</Button>
@@ -122,10 +122,10 @@ export default function Home() {
         }}
       >
         <Typography variant="h2" sx={{ fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif', fontSize: '4rem' }}>
-          STUDY BUDDY GPT
+          Relaxasaurus
         </Typography>
         <Typography variant="h5" sx={{ maxWidth: '800px', mt: 2, fontSize: '1.2rem' }}>
-          Create flashcards from your text with ease using our AI-powered platform.
+          Feeling stressed? Let Relaxasaurus show you the dino-mite way to crush anxiety and stomp out stress!"
         </Typography>
         <Button
           variant="contained"
@@ -165,15 +165,27 @@ export default function Home() {
           </Typography>
           <Grid container spacing={4}>
             {[
-              { title: "Easy Text Input", description: "Simply input your text and let our software do the rest.", icon: <FaUser size={30} color='#ABD4F1' /> },
-              { title: "Smart Flashcards", description: "Our AI breaks down your text into concise flashcards perfect for studying.", icon: <FaLightbulb size={30} color='#ABD4F1' /> },
-              { title: "Accessible Anywhere", description: "Access your flashcards from any device, at any time. Study on the go with ease.", icon: <FaMobileAlt size={30} color='#ABD4F1' /> },
+              {
+                title: "Calm as a Brachiosaurus",
+                description: "Remember watching those long-necked giants calmly grazing? Now you can be just as cool and collected. Our platform is designed to keep your stress as low as a Brachiosaurus’ heartbeat.",
+                icon: <FaUser size={30} color='#ABD4F1' />
+              },
+              {
+                title: "Majestic Focus of a T-Rex",
+                description: "Growing up, we all admired the T-Rex’s focus and power. Use that same laser focus to conquer your tasks with our smart tools, breaking down your day into bite-sized pieces.",
+                icon: <FaLightbulb size={30} color='#ABD4F1' />
+              },
+              {
+                title: "Relax Anywhere, Like a Pterodactyl",
+                description: "Remember when the Pterodactyl soared through the skies, free and easy? With Relaxasaurus, you can carry that chill vibe with you wherever you go, accessing your calm from any device, anytime.",
+                icon: <FaMobileAlt size={30} color='#ABD4F1' />
+              },
             ].map((feature, index) => (
               <Grid item xs={12} md={4} key={index}>
                 <Box
                   sx={{
-                    p: 3,
-                    height: '250px',
+                    p: 4,  // Increased padding
+                    height: '300px',  // Increased height
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
@@ -190,16 +202,17 @@ export default function Home() {
                     },
                   }}
                 >
-                  <Box sx={{ mb: 1 }}>
+                  <Box sx={{ mb: 2 }}>
                     {feature.icon}
                   </Box>
-                  <Typography variant="h6" sx={{ fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif', color: '#51BFDA', mb: 1, fontSize: '1.75rem' }}>
+                  <Typography variant="h5" sx={{ fontWeight: 'bold', fontFamily: 'Montserrat, sans-serif', color: '#51BFDA', mb: 2, fontSize: '1.25rem' }}>
                     {feature.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ fontSize: '1rem' }}>
+                  <Typography variant="body1" sx={{ fontSize: '1rem' }}> {/* Increased font size */}
                     {feature.description}
                   </Typography>
                 </Box>
+
               </Grid>
             ))}
           </Grid>

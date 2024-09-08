@@ -16,7 +16,7 @@ export default function SignUpPage() {
                     {/* Left Side */}
                     <Button color="inherit">
                         <Link href="/" underline="none" color="inherit" sx={{ fontSize: '1.5rem' }}>
-                            STUDY BUDDY GPT
+                            Relaxasaurus
                         </Link>
                     </Button>
                     

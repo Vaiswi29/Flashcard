@@ -435,7 +435,7 @@ export default function Generate() {
                 maxWidth: '800px',
             }}>
                 <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2, color: '#fff' }}>
-                    Generate Flashcards
+                    Generate Saurascards
                 </Typography>
                 <Paper sx={{
                     p: 4,
@@ -523,7 +523,7 @@ export default function Generate() {
                                 '&:hover': { backgroundColor: '#6A1B9A' }
                             }}
                         >
-                            See the SAVED flashcards
+                            See the SAVED Saurascards
                         </Button>
                     </Box>
                 </Paper>
@@ -532,7 +532,7 @@ export default function Generate() {
             {flashcards.length > 0 && (
                 <Box sx={{ mt: 4, width: '100%', maxWidth: '1200px' }}>
                     <Typography variant="h5" sx={{ color: '#fff', fontWeight: 'bold', mb: 3 }}>
-                        Flashcards Preview
+                        Preview
                     </Typography>
                     <Grid container spacing={4}>
                         {flashcards.map((flashcard, index) => (

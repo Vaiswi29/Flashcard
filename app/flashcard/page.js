@@ -257,7 +257,7 @@ export default function Flashcard() {
                         href="/generate"
                         sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}
                     >
-                        Generate New Flashcards
+                        Generate New Saurascards
                     </Button>
                     {search || "Untitled"} {/* Display the flashcard set name as the title */}
                     <Button
@@ -265,7 +265,7 @@ export default function Flashcard() {
                         href="/flashcards"
                         sx={{ backgroundColor: 'white', color: '#4A148C', '&:hover': { backgroundColor: '#B39DDB' } }}
                     >
-                        Back to saved flashcards
+                        Back to saved Saurascards
                     </Button>
                 </Box>
 
